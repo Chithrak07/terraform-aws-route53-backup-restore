@@ -1,4 +1,4 @@
-resource "null_resource" "deploy_route53_backup_and_restore" {
+resource "aws_route53_zone" "deploy_route53_backup_and_restore" {
   triggers = {
     build = timestamp()
   }
@@ -9,7 +9,7 @@ resource "null_resource" "deploy_route53_backup_and_restore" {
   }
 }
 
-resource "null_resource" "remove_route53_backup_and_restore" {
+resource "aws_route53_zone" "remove_route53_backup_and_restore" {
   provisioner "local-exec" {
     when        = "destroy"
     working_dir = path.module
